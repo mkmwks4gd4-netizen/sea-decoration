@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ead2d0">
+<link rel="manifest" href="manifest.json">
+<title>SEA Decoration</title>
+<style>
+:root{--bg:#f8eee9;--card:#fffaf7;--ink:#4b3935;--muted:#8e7770;--accent:#b88d83;--line:#ead9d2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{padding:28px 20px 16px;text-align:center}header img{width:110px;height:110px;object-fit:cover;border-radius:22px;box-shadow:0 8px 30px #7c5f5520}
+h1{font-family:Georgia,serif;font-size:28px;margin:14px 0 5px}.sub{color:var(--muted);font-size:14px}
+nav{display:flex;gap:8px;padding:0 16px 16px;overflow:auto}nav button{border:1px solid var(--line);background:var(--card);padding:10px 15px;border-radius:20px;color:var(--ink);white-space:nowrap}
+main{padding:0 16px 100px}.hero{background:linear-gradient(135deg,#f3ddd9,#ead1ca);border-radius:24px;padding:22px;margin-bottom:16px;box-shadow:0 10px 30px #8b665315}
+.hero h2{font-family:Georgia,serif;font-size:25px;margin:0 0 8px}.hero p{margin:0 0 16px;color:#765e57}
+.cta{display:inline-block;background:var(--ink);color:white;border:0;border-radius:14px;padding:12px 16px;text-decoration:none}
+.section-title{font-family:Georgia,serif;font-size:21px;margin:22px 2px 12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;min-height:150px}.card .pic{height:90px;border-radius:13px;background:linear-gradient(135deg,#ead4cf,#f5e8e3);display:flex;align-items:center;justify-content:center;font-size:34px}
+.card h3{font-size:15px;margin:10px 0 4px}.price{font-weight:700;color:var(--accent)}
+.steps{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.step:last-child{border:0}
+.num{width:30px;height:30px;border-radius:50%;background:#ead2cc;display:grid;place-items:center;font-weight:700}
+footer{position:fixed;left:0;right:0;bottom:0;background:#fffaf7ee;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px 6px calc(10px + env(safe-area-inset-bottom))}
+footer a{font-size:12px;color:var(--ink);text-decoration:none;text-align:center}footer span{display:block;font-size:20px;margin-bottom:2px}
+</style>
+</head>
+<body>
+<header>
+<img src="sea-logo.jpg" alt="SEA Decoration logosu">
+<h1>SEA Decoration</h1><div class="sub">Özgün tasarımlar • Modern üretim</div>
+</header>
+<nav>
+<button onclick="show('home')">Ana Sayfa</button>
+<button onclick="show('products')">Ürünler</button>
+<button onclick="show('custom')">Kişiye Özel</button>
+</nav>
+<main id="app"></main>
+<footer>
+<a href="#" onclick="show('home');return false"><span>⌂</span>Ana Sayfa</a>
+<a href="#" onclick="show('products');return false"><span>◇</span>Ürünler</a>
+<a href="#" onclick="show('custom');return false"><span>✦</span>Özel Tasarım</a>
+<a href="https://instagram.com/" target="_blank"><span>◎</span>Instagram</a>
+</footer>
+<script>
+const products=[
+["QR Masa Standı","Kafe ve işletmelere özel QR standı","₺—","▣"],
+["İsimli Masaüstü","Kişiye özel isim ve yazı tasarımı","₺—","A"],
+["Logo Objesi","İşletme logosunu 3D objeye dönüştürme","₺—","◈"],
+["Özel Organizer","İhtiyaca göre ölçülendirilmiş tasarım","₺—","▤"]
+];
+
+function show(page){
+  const el=document.getElementById('app');
+  if(page==='home'){
+    el.innerHTML=`
+    <section class="hero">
+      <h2>Her gün yeni bir fikir.</h2>
+      <p>Fikrinizi 3D tasarıma dönüştürüyor, sipariş geldikçe üretiyoruz.</p>
+      <a class="cta" href="https://instagram.com/" target="_blank">DM'den iletişime geç</a>
+    </section>
+    <h2 class="section-title">Bugünün üretimi</h2>
+    <div class="card"><div class="pic">🖨️</div><h3>Yakında burada</h3><div class="sub">Her gün yeni bir ürün ve üretim hikâyesi.</div></div>
+    <h2 class="section-title">Nasıl çalışıyoruz?</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><b>Fikrini gönder</b><br><span class="sub">DM üzerinden anlat veya görsel paylaş.</span></div></div>
+      <div class="step"><div class="num">2</div><div><b>Tasarımı hazırlayalım</b><br><span class="sub">Ölçü ve detayları netleştirelim.</span></div></div>
+      <div class="step"><div class="num">3</div><div><b>Üretelim</b><br><span class="sub">Onay sonrası 3D baskıyı yapalım.</span></div></div>
+    </div>`;
+  }
+  if(page==='products'){
+    el.innerHTML='<h2 class="section-title">Ürünler</h2><div class="grid">'+products.map(p=>`
+      <div class="card"><div class="pic">${p[3]}</div><h3>${p[0]}</h3><div class="sub">${p[1]}</div><div class="price">${p[2]}</div></div>
+    `).join('')+'</div>';
+  }
+  if(page==='custom'){
+    el.innerHTML=`
+    <section class="hero"><h2>Sen hayal et, biz üretelim.</h2><p>Fotoğraf, ölçü veya fikrini gönder. Sana uygun üretim seçeneğini birlikte belirleyelim.</p><a class="cta" href="https://instagram.com/" target="_blank">Instagram DM</a></section>
+    <h2 class="section-title">Bize ne gönderebilirsin?</h2>
+    <div class="steps">
+      <div class="step">📸 Ürünün fotoğrafı</div><div class="step">📏 Ölçüler</div>
+      <div class="step">🎨 İstediğin renk</div><div class="step">💡 Tasarım fikrin</div>
+    </div>`;
+  }
+}
+show('home');
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+</script>
+</body>
+</html>
